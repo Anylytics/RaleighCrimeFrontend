@@ -47,7 +47,7 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
     
     function processResult(result) 
     {
-    	var newlatlng = { "lat": result.geometry.location.k, "lng": result.geometry.location.D};
+    	var newlatlng = { "lat": result.geometry.location.A, "lng": result.geometry.location.F};
     	var address = result.formatted_address;
     	var main_name = address.split(",").slice(0,2);
     	var object = {'name': main_name, 'geo': newlatlng, 'isChecked': false};
@@ -196,7 +196,7 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
 			    	}  
 			    }
 			    //Google Wasn't Able to GeoCode, so we'll manually geocode
-			    var output = { "geometry": {"location": {"k": latlng.k, "D": latlng.D}}, "formatted_address": "Custom Search, Raleigh"};
+			    var output = { "geometry": {"location": {"A": latlng.k, "F": latlng.D}}, "formatted_address": "Custom Search, Raleigh"};
 			    processResult(output);
 			    return;
 			});	
