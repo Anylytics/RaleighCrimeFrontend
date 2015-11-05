@@ -47,8 +47,6 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
     
     function processResult(result) 
     {
-    	console.log(result);
-    	console.log(result.geometry.location.lat());
     	var newlatlng = { "lat": result.geometry.location.lat(), "lng": result.geometry.location.lng()};
     	var address = result.formatted_address;
     	var main_name = address.split(",").slice(0,2);
@@ -92,7 +90,7 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
 	            crimeIndexRactive.set("indexRatio", nightCount/(nightCount + dayCount)*100);
 
 	            crimeIndexRactive.set("categoryCount", json["categoryCount"]);
-	            console.log(json["categoryCount"]);
+	            //console.log(json["categoryCount"]);
 	        }
 	    });
     }
@@ -187,13 +185,9 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
 			    if (status == google.maps.GeocoderStatus.OK) {
 			    	if (results[1]) {
 			    		if (results[1].formatted_address.indexOf("Raleigh, NC") > -1 && results[1].formatted_address.slice(0,11) != "Raleigh, NC") {
-			    			results[1].geometry.location.k = latlng.k;
-			    			results[1].geometry.location.D = latlng.D;
 			    			results[1].geometry.location.lat = latlng.lat;
 			    			results[1].geometry.location.lng = latlng.lng;
-			    			
 			    			//var newlatlng = { "lat": result.geometry.location.k, "lng": result.geometry.location.D};
-	    	
 			    			//var output = { "geometry": {"location": {"k": e.latlng.lat, "D": e.latlng.lng}}, "formatted_address": };
 							processResult(results[1]);
 							return;
@@ -218,7 +212,7 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
     }
 
     crimeIndexRactive.on('updateFilters', function(event,filters) {
-	    console.log(filters);
+	    //console.log(filters);
 	    dayCrimes.setFilter(dayFilter);
 	    nightCrimes.setFilter(nightFilter);
 	    styleLayer(dayCrimes);
@@ -255,7 +249,7 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
     searchRactive.on( 'currentLocation', function(event) {
     	if (navigator.geolocation) {
         	navigator.geolocation.getCurrentPosition(function (position) {
-        		console.log(position);
+        		//console.log(position);
         		var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 				geoCodeQuery(latlng);
         	});
