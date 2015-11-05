@@ -47,7 +47,9 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
     
     function processResult(result) 
     {
-    	var newlatlng = { "lat": result.geometry.location.A, "lng": result.geometry.location.F};
+    	console.log(result);
+    	console.log(result.geometry.location.lat());
+    	var newlatlng = { "lat": result.geometry.location.lat(), "lng": result.geometry.location.lng()};
     	var address = result.formatted_address;
     	var main_name = address.split(",").slice(0,2);
     	var object = {'name': main_name, 'geo': newlatlng, 'isChecked': false};
@@ -187,6 +189,9 @@ define([ 'ractive', 'ractive_events_keys', 'rv!../ractive/searchbarTemplate', 'g
 			    		if (results[1].formatted_address.indexOf("Raleigh, NC") > -1 && results[1].formatted_address.slice(0,11) != "Raleigh, NC") {
 			    			results[1].geometry.location.k = latlng.k;
 			    			results[1].geometry.location.D = latlng.D;
+			    			results[1].geometry.location.lat = latlng.lat;
+			    			results[1].geometry.location.lng = latlng.lng;
+			    			
 			    			//var newlatlng = { "lat": result.geometry.location.k, "lng": result.geometry.location.D};
 	    	
 			    			//var output = { "geometry": {"location": {"k": e.latlng.lat, "D": e.latlng.lng}}, "formatted_address": };
